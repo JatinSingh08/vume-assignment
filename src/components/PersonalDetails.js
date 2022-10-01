@@ -8,6 +8,7 @@ function PersonalDetails({ formData, setFormData }, {isError, setIsError}) {
 
         <label htmlFor="nameInput">Name : </label>
         <input type="text" 
+        
         id='nameInput'
         placeholder='Name...' 
         value={formData.name} 

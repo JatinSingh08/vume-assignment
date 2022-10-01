@@ -18,24 +18,7 @@ function Form() {
     university: ''
   })
 
-  const errorHandler = (formData) => {
-    
-    // Object.keys(formData).map(key => {
-    //   if(formData[key].length === 0){
-    //     return true;
-    //     setErrorMessage('*Enter all the required fields.')
-    //   }
-    // })
-    for(let i=0;i<formData.length;i++){
-      if(formData[i].length === 0){
-        return true;
-
-      }
-    }
-
-    return false;
-    // setIsError(false);
-  }
+  
  
 
   const PageDisplay = () => {
@@ -50,17 +33,12 @@ function Form() {
     }
   }
 
-useEffect(() => {
-  errorHandler(formData);
-}, errorHandler(formData))
 
-  const prevDisplay = () => {
-    if(page === pageTitles.length - 1 ){
-      
-    }
-  }
+
+
   return (
     <div className='form'>
+      
        <div className="progressbar">
         <div style={{width: page===0 ? "33.3%" : page===1 ? "66.6%" : "100%"}}></div>
        </div>
@@ -73,7 +51,7 @@ useEffect(() => {
             {PageDisplay()}
           </div>
 
-          {errorMessage}
+          {/* {isError ? 'Enter all fields' : 'ok'} */}
           <div className="footer">
 
             <button 
@@ -81,13 +59,14 @@ useEffect(() => {
             onClick={() => setPage((currPage) => currPage - 1)}>Prev</button>
 
             <button
-            disabled={ page === pageTitles.length - 1 || errorHandler}
-            onClick={() => {errorHandler(formData) === false ? setPage((currPage) => currPage + 1) : setPage(currPage => currPage)}}>
-              Next
+            disabled={ page === pageTitles.length - 1 || isError===true}
+            onClick={() => {setPage(currPage => currPage + 1)}}>
+              {page === 1 ? "Submit" : "Next"}
             </button>
             
           </div>
        </div>
+      
     </div>
   )
 }
